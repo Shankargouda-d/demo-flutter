@@ -8,8 +8,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[50], // Light blue background
       appBar: AppBar(
-        title: Text("Home Screen"),
+        backgroundColor: Colors.blue, // AppBar blue color
+        title: Text(
+          "Home Screen",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
@@ -23,9 +28,27 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text(
-          "Welcome, $username 👋",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        child: Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.blue[100], // Slightly darker blue container
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blue.withOpacity(0.3),
+                blurRadius: 10,
+                offset: Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Text(
+            "Welcome, $username 👋",
+            style: TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue[900], // Dark blue text
+            ),
+          ),
         ),
       ),
     );
