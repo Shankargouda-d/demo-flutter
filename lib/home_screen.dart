@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import 'test.dart'; // <-- import test.dart
 
 class HomeScreen extends StatelessWidget {
   final String username;
@@ -8,9 +9,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 42, 3, 183), // Light blue background
+      backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 115, 184, 6), // AppBar blue color
+        backgroundColor: Colors.blue,
         title: Text(
           "Home Screen",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -24,31 +25,53 @@ class HomeScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
-          )
+          ),
         ],
       ),
       body: Center(
-        child: Container(
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.blue[100], // Slightly darker blue container
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blue.withOpacity(0.3),
-                blurRadius: 10,
-                offset: Offset(0, 5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.3),
+                    blurRadius: 10,
+                    offset: Offset(0, 5),
+                  ),
+                ],
               ),
-            ],
-          ),
-          child: Text(
-            "Welcome, $username 👋",
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue[900], // Dark blue text
+              child: Text(
+                "Welcome, $username 👋",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[900],
+                ),
+              ),
             ),
-          ),
+            SizedBox(height: 30),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TestScreen()),
+                );
+              },
+              child: Text(
+                "Go to Sports",
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+            ),
+          ],
         ),
       ),
     );
