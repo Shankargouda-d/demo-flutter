@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blue[50], // Light blue background
       appBar: AppBar(
-        backgroundColor: Colors.blue, // AppBar blue color
+        backgroundColor: const Color.fromARGB(255, 190, 76, 9), // AppBar blue color
         title: Text(
           "Home Screen",
           style: TextStyle(fontWeight: FontWeight.bold),
