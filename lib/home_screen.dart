@@ -1,78 +1,45 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
-import 'test.dart'; // <-- import test.dart
 
 class HomeScreen extends StatelessWidget {
-  final String username;
-  const HomeScreen({Key? key, required this.username}) : super(key: key);
+  const HomeScreen({super.key});
+
+  final List<Map<String, String>> touristPlaces = const [
+    {"name": "Taj Mahal", "location": "Agra"},
+    {"name": "Mysore Palace", "location": "Mysore"},
+    {"name": "Charminar", "location": "Hyderabad"},
+    {"name": "Gateway of India", "location": "Mumbai"},
+    {"name": "Hampi", "location": "Karnataka"},
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(
-          "Home Screen",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
-            },
-          ),
-        ],
+        title: const Text("Tourist App"),
+        centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.blue[100],
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.blue.withOpacity(0.3),
-                    blurRadius: 10,
-                    offset: Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: Text(
-                "Welcome, $username 👋",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue[900],
-                ),
-              ),
+      body: ListView.builder(
+        itemCount: touristPlaces.length,
+        itemBuilder: (context, index) {
+          final place = touristPlaces[index];
+          return Card(
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
-            SizedBox(height: 30),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const TestScreen()),
+            child: ListTile(
+              leading: const Icon(Icons.location_on, color: Colors.teal),
+              title: Text(place["name"]!),
+              subtitle: Text(place["location"]!),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Clicked on ${place["name"]}")),
                 );
               },
-              child: Text(
-                "Go to Sports",
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

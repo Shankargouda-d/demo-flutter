@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
+import 'home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const TouristApp());
 }
 
-class MyApp extends StatelessWidget {
+class TouristApp extends StatelessWidget {
+  const TouristApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Login Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: LoginScreen(),
+      title: "Tourist App",
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+      ),
+      home: const HomeScreen(),
     );
   }
 }
